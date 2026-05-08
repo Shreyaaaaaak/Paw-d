@@ -1,0 +1,13 @@
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Node.js dependencies (if added later)
+node_modules/
+
+# VS Code workspace files
+.vscode/
+
+# Temporary files
+*.log
+*.tmp
