@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paw'd 🐾</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ══ SCREEN: HOME ══ -->
+  <div class="screen active" id="screen-home">
+    <div class="home-wrap">
+      <div class="home-logo">
+        <div class="paw-icon">🐾</div>
+        <h1 class="brand">Paw'd</h1>
+        <p class="tagline">Find your furever friend ✨</p>
+        <p class="home-welcome" id="home-welcome">Hey, there! Ready to swipe?</p>
+      </div>
+      <div class="home-btns">
+        <button class="btn-main" id="btn-start">
+          <i class="fas fa-heart"></i> Start Swiping
+        </button>
+        <button class="btn-secondary" id="btn-view-matches">
+          <i class="fas fa-star"></i> My Matches
+          <span class="match-count-badge" id="home-match-count">0</span>
+        </button>
+      </div>
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">🐾 All</button>
+        <button class="filter-btn" data-filter="dog">🐶 Dogs</button>
+        <button class="filter-btn" data-filter="cat">🐱 Cats</button>
+      </div>
+      <div class="home-meta">
+        <div class="home-status">
+          <span class="hud-pill">🔥 Streak <strong id="streak-count">0</strong>d</span>
+          <span class="hud-pill boost" id="boost-badge">Boost off</span>
+        </div>
+        <div class="home-actions-row">
+          <button class="btn-secondary" id="btn-open-profile"><i class="fas fa-user"></i> Profile</button>
+          <button class="btn-secondary" id="btn-open-stats"><i class="fas fa-chart-bar"></i> Stats</button>
+          <button class="btn-ghost" id="btn-toggle-boost">⚡ Boost Off</button>
+          <button class="btn-ghost" id="btn-toggle-music">🎵 Music Off</button>
+        </div>
+      </div>
+      <p class="home-hint">Swipe right to like · Swipe left to pass</p>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: SWIPE ══ -->
+  <div class="screen" id="screen-swipe">
+    <div class="swipe-wrap">
+
+      <!-- Top bar -->
+      <div class="swipe-topbar">
+        <button class="icon-btn" id="btn-back-home"><i class="fas fa-arrow-left"></i></button>
+        <div class="brand-sm">Paw'd 🐾</div>
+        <button class="icon-btn" id="btn-goto-matches">
+          <i class="fas fa-star"></i>
+          <span class="dot-badge" id="swipe-match-badge"></span>
+        </button>
+      </div>
+
+      <!-- Card stack -->
+      <div class="card-stack" id="card-stack">
+        <!-- Cards injected by JS -->
+      </div>
+
+      <!-- Action buttons -->
+      <div class="action-bar">
+        <button class="action-btn nope" id="btn-nope" title="Nope (←)">
+          <i class="fas fa-times"></i>
+        </button>
+        <button class="action-btn superlike" id="btn-superlike" title="Super Like (↑)">
+          <i class="fas fa-star"></i>
+        </button>
+        <button class="action-btn like" id="btn-like" title="Like (→)">
+          <i class="fas fa-heart"></i>
+        </button>
+      </div>
+
+      <p class="key-hint">← Nope &nbsp;·&nbsp; ↑ Super Like &nbsp;·&nbsp; → Like</p>
+
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: MATCH ══ -->
+  <div class="screen" id="screen-match">
+    <div class="match-wrap">
+      <div class="match-burst" id="match-burst"></div>
+      <div class="match-heading">
+        <div class="match-emoji">💕</div>
+        <h2 class="match-title">It's a Match!</h2>
+        <p class="match-sub" id="match-sub">You and Mochi liked each other!</p>
+      </div>
+      <div class="match-avatars">
+        <div class="match-avatar you">🧑</div>
+        <div class="match-heart">❤️</div>
+        <div class="match-avatar pet" id="match-pet-avatar">🐱</div>
+      </div>
+      <div class="match-actions">
+        <button class="btn-main" id="btn-send-message">
+          <i class="fas fa-comment-dots"></i> Send a Message
+        </button>
+        <button class="btn-ghost" id="btn-keep-swiping">
+          Keep Swiping <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: CHAT ══ -->
+  <div class="screen" id="screen-chat">
+    <div class="chat-wrap">
+      <div class="chat-topbar">
+        <button class="icon-btn" id="btn-back-matches"><i class="fas fa-arrow-left"></i></button>
+        <div class="chat-pet-info">
+          <div class="chat-avatar" id="chat-avatar">🐱</div>
+          <div>
+            <div class="chat-name" id="chat-name">Mochi</div>
+            <div class="chat-status">Active now 🟢</div>
+          </div>
+        </div>
+        <div style="width:36px"></div>
+      </div>
+
+      <div class="chat-messages" id="chat-messages"></div>
+
+      <div class="chat-input-bar">
+        <input type="text" id="chat-input" class="chat-input" placeholder="Say something cute... 🐾" maxlength="100" />
+        <button class="send-btn" id="btn-send"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: MATCHES ══ -->
+  <div class="screen" id="screen-matches">
+    <div class="matches-wrap">
+      <div class="matches-topbar">
+        <button class="icon-btn" id="btn-matches-back"><i class="fas fa-arrow-left"></i></button>
+        <h2 class="matches-title">My Matches 💕</h2>
+        <div style="width:36px"></div>
+      </div>
+      <div id="matches-list" class="matches-list"></div>
+      <div id="matches-empty" class="matches-empty" style="display:none">
+        <div style="font-size:56px; margin-bottom:1rem">🐾</div>
+        <p>No matches yet!</p>
+        <p style="font-size:13px; opacity:0.6; margin-top:6px">Start swiping to find your furever friend</p>
+        <button class="btn-main" style="margin-top:1.5rem" id="btn-empty-swipe">Start Swiping</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: PROFILE ══ -->
+  <div class="screen" id="screen-profile">
+    <div class="profile-wrap">
+      <div class="screen-topbar">
+        <button class="icon-btn" id="btn-profile-back"><i class="fas fa-arrow-left"></i></button>
+        <h2 class="screen-title">Profile</h2>
+        <div style="width:36px"></div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-avatar-preview" id="profile-avatar-preview">🧑</div>
+        <h3 id="profile-name-preview">Your name here</h3>
+        <p class="profile-sub">Choose a fun avatar and name for your Paw'd profile.</p>
+      </div>
+      <div class="profile-form">
+        <label class="profile-label" for="profile-name">Display Name</label>
+        <input id="profile-name" class="profile-input" type="text" placeholder="Your name" maxlength="20" />
+        <label class="profile-label">Avatar</label>
+        <div class="avatar-grid" id="avatar-options"></div>
+        <button class="btn-main" id="btn-profile-save">Save Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: STATS ══ -->
+  <div class="screen" id="screen-stats">
+    <div class="stats-wrap">
+      <div class="screen-topbar">
+        <button class="icon-btn" id="btn-stats-back"><i class="fas fa-arrow-left"></i></button>
+        <h2 class="screen-title">Stats</h2>
+        <div style="width:36px"></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Swipes</div>
+          <div class="stat-value" id="stat-total-swipes">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Likes</div>
+          <div class="stat-value" id="stat-likes">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Nope</div>
+          <div class="stat-value" id="stat-nopes">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Super Likes</div>
+          <div class="stat-value" id="stat-superlikes">0</div>
+        </div>
+      </div>
+      <div class="stats-extra">
+        <div class="stat-summary">Match rate <span id="stat-match-rate">0%</span></div>
+        <div class="stat-summary">Favourite type <span id="stat-fav-type">—</span></div>
+        <div class="stat-summary">Current streak <span id="stat-current-streak">0</span>d</div>
+        <div class="stat-summary">Best streak <span id="stat-best-streak">0</span>d</div>
+      </div>
+      <button class="btn-main" id="btn-reset-stats">Reset Stats</button>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: EMPTY (no more cards) ══ -->
+  <div class="screen" id="screen-empty">
+    <div class="empty-wrap">
+      <div style="font-size:72px; margin-bottom:1rem">😴</div>
+      <h2 style="font-family:'Pacifico',cursive; font-size:28px; margin-bottom:0.5rem">All caught up!</h2>
+      <p style="opacity:0.6; margin-bottom:2rem">You've seen all the pets for now.<br/>Check your matches!</p>
+      <button class="btn-main" id="btn-empty-matches"><i class="fas fa-star"></i> View Matches</button>
+      <button class="btn-ghost" style="margin-top:10px" id="btn-reset">Reset & Start Over 🔄</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Match overlay (shown on top of swipe screen) -->
+<div class="match-overlay" id="match-overlay">
+  <div class="overlay-content">
+    <div class="overlay-emoji" id="overlay-emoji">🐾</div>
+    <h2 class="overlay-title">It's a Match!</h2>
+    <p class="overlay-sub" id="overlay-sub">You matched!</p>
+    <button class="btn-main" id="overlay-chat-btn"><i class="fas fa-comment-dots"></i> Chat</button>
+    <button class="btn-ghost" id="overlay-continue-btn">Continue Swiping</button>
+  </div>
+</div>
+
+<script src="pets.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
